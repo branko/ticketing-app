@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2018_04_25_180245) do
     t.string "name"
   end
 
-  create_table "ticket_tags", id: false, force: :cascade do |t|
+  create_table "ticket_tags", force: :cascade do |t|
     t.integer "ticket_id"
     t.integer "tag_id"
   end

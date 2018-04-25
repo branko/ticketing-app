@@ -21,8 +21,15 @@
   <%= f.select(:status, options_for_select(['new', 'blocked', 'in_progress', 'fixed'])) %>
 
   <%= f.label :project_id %>
-  <%= f.select :project_id, options_for_select(@project_options) %>
+  <%= f.select :project_id, options_from_collection_for_select(@projects, 'id', 'name')
+  %>
 
+  <%= f.label :tag_ids %>
+  <%= f.select :tag_ids, options_from_collection_for_select(
+    @tags,
+    'id',
+    'name',
+    { :selected => @currentTagIds }), {}, { :multiple => true } %>
 
   <%= f.submit ticket.new_record? ? 'Create' : 'Update' %>
 <% end %>

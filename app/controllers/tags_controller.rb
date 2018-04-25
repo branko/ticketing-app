@@ -19,6 +19,31 @@ class TagsController < ApplicationController
     end
   end
 
+  def edit
+    @tag = Tag.find(params[:id])
+  end
+
+  def update
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      flash[:success] = "Successfully updated"
+      redirect_to tags_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id])
+    if @tag.destroy
+      flash[:success] = 'Successfully deleted'
+      redirect_to tags_path
+    else
+      flash[:error] = "Could not delete"
+      render 'index'
+    end
+  end
+
   private
 
   def tag_params

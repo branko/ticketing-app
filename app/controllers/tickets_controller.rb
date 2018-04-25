@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-  before_action :get_project_options, only: [:new, :edit, :create]
 
   def index
     @tickets = Ticket.all
@@ -11,6 +10,8 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
+    @projects = Project.all
+    @tags = Tag.all
   end
 
   def create
@@ -25,7 +26,10 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    @tags = Tag.all
+    @projects = Project.all
     @ticket = Ticket.find(params[:id])
+    @currentTagIds = @ticket.tags.ids
   end
 
   def update
@@ -40,26 +44,14 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    @ticket = Ticket.find(params[:id])
-
-    if @ticket.destroy
-      flash[:success] = "Ticket destroyed"
-      redirect_to project_path(@ticket.project_id)
-    else
-      flash[:error] = "Could not delete"
-      redirect_to projects_path
-    end
+    Ticket.destroy(params[:id])
+    flash[:success] = "Ticket successfully destroy"
+    redirect_to root_path
   end
 
   private
 
-  def get_project_options
-    @project_options = Project.all.ids.map do |id|
-      [Project.find(id).name, id]
-    end
-  end
-
   def ticket_params
-    params.require(:ticket).permit(:name, :body, :status, :project_id)
+    params.require(:ticket).permit(:name, :body, :status, :project_id, tag_ids: [])
   end
 end
