@@ -1,0 +1,29 @@
+  <% if ticket.errors.any? %>
+    <div class="flash">
+
+      <h3>The following errors occured:</h3>
+      <ul>
+        <% ticket.errors.messages.each do |field, error| %>
+          <li><%= field.capitalize %> <%= error.join(', ') %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+
+<%= form_for ticket do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.label :status %>
+  <%= f.select(:status, options_for_select(['new', 'blocked', 'in_progress', 'fixed'])) %>
+
+  <%= f.label :project_id %>
+  <%= f.select :project_id, options_for_select(@project_options) %>
+
+
+  <%= f.submit ticket.new_record? ? 'Create' : 'Update' %>
+<% end %>
+

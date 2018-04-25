@@ -1,0 +1,16 @@
+<% if project.errors.any? %>
+  <h3>The following errors occured:</h3>
+  <ul>
+    <% project.errors.messages.each do |field, error| %>
+      <li><%= field.capitalize %> <%= error.join(', ') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for project do |f| %>
+  <%= f.label 'Name' %>
+  <%= f.text_field :name %>
+  <%= f.label 'Description' %>
+  <%= f.text_area :description %>
+  <%= f.submit project.new_record? ? 'Create' : 'Update' %>
+<% end %>

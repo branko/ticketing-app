@@ -1,0 +1,33 @@
+
+<h3>Tags</h3>
+
+<% if tags.empty? %>
+  <p>No tags available</p>
+<% else %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Tickets</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+          <td>
+            <%= tag.tickets.map { |ticket| link_to ticket.id, ticket_path(ticket.id) }.join(', ').html_safe %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_tag_path(tag) %>
+          </td>
+          <td>
+            <%= link_to "Delete", tag_path(tag), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -13,3 +13,46 @@
  *= require_tree .
  *= require_self
  */
+ 
+html {
+  font: normal 16px sans-serif;
+}
+form {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 30px;
+  border: 1px solid gray;
+}
+input, label, textarea {
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  width: 100%;
+  margin: 2px 0;
+}
+input, textarea {
+  border: 1px solid #cecece;
+  padding: 2px;
+}
+textarea {
+  height: 5em;
+}
+.flash {
+  background: #eee;
+  outline: 1px solid black;
+  padding: 20px;
+  display: inline-block;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  border: 1px solid #cdcdcd;
+  padding: 6px;
+  vertical-align: top;
+}
+th, td {
+  text-align: left;
+  max-width: 30em;
+}
+

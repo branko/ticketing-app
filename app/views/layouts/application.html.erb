@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <h1>Ticketing App</h1>
+    <% if flash.any? %>
+      <div class="flash">
+        <% flash.each do |type, message| %>
+          <%= message %>
+        <% end %>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>

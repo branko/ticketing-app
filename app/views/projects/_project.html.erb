@@ -1,0 +1,29 @@
+<% if projects.empty? %>
+  <h5>Nothing to display...</h5>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project_path(project) %></td>
+          <td><%= project.description %></td>
+          <td>
+            <%= link_to "Edit", edit_project_path(project) %>
+          </td>
+          <td>
+            <%= link_to "Delete", project_path(project), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<% end %>

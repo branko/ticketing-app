@@ -1,0 +1,16 @@
+<h1>Welcome!</h1>
+
+
+<%= link_to "Projects", projects_path %>
+<%= link_to "Tickets", tickets_path %>
+<%= link_to "Tags", tags_path %>
+
+<h3>Projects</h3>
+
+<%= render 'projects/project', projects: @projects %>
+
+<br>
+<%= link_to "Create Project", new_project_path %>
+<br>
+<%= link_to "Create Ticket", new_ticket_path %>
+<br>

@@ -1,0 +1,14 @@
+<% if tag.errors.any? %>
+  <h3>The following errors occured:</h3>
+  <ul>
+    <% tag.errors.messages.each do |field, error| %>
+      <li><%= field.capitalize %> <%= error.join(', ') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for tag do |f| %>
+  <%= f.label 'Name' %>
+  <%= f.text_field :name %>
+  <%= f.submit tag.new_record? ? 'Create' : 'Update' %>
+<% end %>
