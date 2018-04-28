@@ -1,5 +1,4 @@
-<h1>Welcome!</h1>
-
+<%= render 'shared/content_title', title: 'Main index', user: current_user %>
 
 <%= link_to "Projects", projects_path %>
 <%= link_to "Tickets", tickets_path %>
@@ -14,3 +13,10 @@
 <br>
 <%= link_to "Create Ticket", new_ticket_path %>
 <br>
+
+<% if logged_in? %>
+  <%= link_to "Log out", logout_path %>
+<% else %>
+  <%= link_to "New User", new_user_path %>
+  <%= link_to "Log in", login_path %>
+<% end %>
