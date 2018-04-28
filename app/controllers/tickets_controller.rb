@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :require_user, except: [:index, :show]
 
   def index
     @tickets = Ticket.all
@@ -50,6 +51,8 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  
 
   def ticket_params
     params.require(:ticket).permit(:name, :body, :status, :project_id, tag_ids: [])

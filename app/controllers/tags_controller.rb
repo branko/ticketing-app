@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :require_user, except: [:index, :show]
 
   def index
     @tags = Tag.all

@@ -10,7 +10,9 @@
       <tr>
         <th>Name</th>
         <th>Tickets</th>
-        <th colspan="2"></th>
+        <% if logged_in? %>
+          <th colspan="2"></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -20,12 +22,14 @@
           <td>
             <%= tag.tickets.map { |ticket| link_to ticket.id, ticket_path(ticket.id) }.join(', ').html_safe %>
           </td>
-          <td>
-            <%= link_to "Edit", edit_tag_path(tag) %>
-          </td>
-          <td>
-            <%= link_to "Delete", tag_path(tag), method: :delete %>
-          </td>
+          <% if logged_in? %>
+            <td>
+              <%= link_to "Edit", edit_tag_path(tag) %>
+            </td>
+            <td>
+              <%= link_to "Delete", tag_path(tag), method: :delete %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -12,7 +12,9 @@
         <th>Status</th>
         <th>Body</th>
         <th>Tags</th>
-        <th colspan="2"></th>
+        <% if logged_in? %>
+          <th colspan="2"></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -22,12 +24,14 @@
           <td><%= ticket.status %></td>
           <td><%= ticket.body %></td>
           <td><%= ticket.tags.map { |t| t.name }.join(', ') %></td>
-          <td>
-            <%= link_to "Edit", edit_ticket_path(ticket) %>
-          </td>
-          <td>
-            <%= link_to "Delete", ticket_path(ticket), method: :delete %>
-          </td>
+          <% if logged_in? %>
+            <td>
+              <%= link_to "Edit", edit_ticket_path(ticket) %>
+            </td>
+            <td>
+              <%= link_to "Delete", ticket_path(ticket), method: :delete %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

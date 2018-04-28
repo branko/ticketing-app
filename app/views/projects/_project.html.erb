@@ -6,7 +6,9 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
-        <th colspan="2"></th>
+        <% if logged_in? %>
+          <th colspan="2"></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -14,12 +16,14 @@
         <tr>
           <td><%= link_to project.name, project_path(project) %></td>
           <td><%= project.description %></td>
-          <td>
-            <%= link_to "Edit", edit_project_path(project) %>
-          </td>
-          <td>
-            <%= link_to "Delete", project_path(project), method: :delete %>
-          </td>
+          <% if logged_in? %>
+            <td>
+              <%= link_to "Edit", edit_project_path(project) %>
+            </td>
+            <td>
+              <%= link_to "Delete", project_path(project), method: :delete %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

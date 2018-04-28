@@ -2,8 +2,10 @@
 <h3>Project:</h3>
 
 <%= render 'project', projects: [@project] %>
-
 <%= render 'tickets', tickets: @tickets %>
 
-<%= link_to "Create Ticket", new_ticket_path %>
+<% if logged_in? %>
+  <%= link_to "Create Ticket", new_ticket_path %>
+<% end %>
+
 <%= link_to "Home", root_path %>

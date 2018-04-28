@@ -8,13 +8,14 @@
 
 <%= render 'projects/project', projects: @projects %>
 
-<br>
-<%= link_to "Create Project", new_project_path %>
-<br>
-<%= link_to "Create Ticket", new_ticket_path %>
-<br>
+
 
 <% if logged_in? %>
+  <br>
+  <%= link_to "Create Project", new_project_path %>
+  <br>
+  <%= link_to "Create Ticket", new_ticket_path %>
+  <br>
   <%= link_to "Log out", logout_path %>
 <% else %>
   <%= link_to "New User", new_user_path %>

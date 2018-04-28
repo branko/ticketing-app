@@ -1,4 +1,4 @@
 <%= render 'tags', tags: @tags %>
 
-<%= link_to "Create new tag", new_tag_path %>
+<%= link_to "Create new tag", new_tag_path if logged_in? %>
 <%= link_to "Home", root_path %>
