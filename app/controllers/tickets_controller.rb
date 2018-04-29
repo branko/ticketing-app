@@ -2,7 +2,9 @@ class TicketsController < ApplicationController
   before_action :require_user, except: [:index, :show]
 
   def index
-    @tickets = Ticket.all
+    project = params[:project]
+    status = params[:status]
+    @tickets = filter_tickets(project, status)  
   end
 
   def show
@@ -56,6 +58,13 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def filter_tickets(project, status)
+    tickets = Ticket.all
+    tickets = tickets.where({ project_id: project.to_i }) if project && !project.empty?
+    tickets = tickets.where({ status: status }) if status && !status.empty?
+    tickets
+  end
 
   def ticket_params
     params.require(:ticket).permit(:name, :body, :status, :project_id, :assignee, tag_ids: []).merge(creator: session[:user_id])

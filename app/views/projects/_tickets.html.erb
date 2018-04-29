@@ -1,6 +1,19 @@
 
 <h3>Tickets</h3>
+<%= form_tag tickets_path, {method: :get} do %>
+    <h3>Filter: </h3>
 
+    <%= label_tag :project %>
+    <%= select_tag :project, options_from_collection_for_select(
+    Project.all,
+    'id',
+    'name'), include_blank: 'All' %>
+
+    <%= label_tag :status %>
+    <%= select_tag :status, options_for_select(['new', 'blocked', 'in_progress', 'fixed']), include_blank: 'All' %>
+
+    <%= submit_tag 'Filter' %>
+  <% end %>
 <% if tickets.empty? %>
   <p>No tickets available</p>
 <% else %>
