@@ -11,6 +11,7 @@
         <th>Name</th>
         <th>Status</th>
         <th>Body</th>
+        <th>Assignee</th>
         <th>Tags</th>
         <% if logged_in? %>
           <th colspan="2"></th>
@@ -23,6 +24,7 @@
           <td><%= link_to ticket.name, ticket_path(ticket) %></td>
           <td><%= ticket.status %></td>
           <td><%= ticket.body %></td>
+          <td><%= User.find_by(id: ticket.assignee).name %></td>
           <td><%= ticket.tags.map { |t| t.name }.join(', ') %></td>
           <% if logged_in? %>
             <td>

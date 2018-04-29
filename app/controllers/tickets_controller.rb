@@ -13,6 +13,8 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
     @projects = Project.all
     @tags = Tag.all
+    @users = User.all
+
   end
 
   def create
@@ -28,6 +30,7 @@ class TicketsController < ApplicationController
 
   def edit
     @tags = Tag.all
+    @users = User.all
     @projects = Project.all
     @ticket = Ticket.find(params[:id])
     @currentTagIds = @ticket.tags.ids
@@ -53,6 +56,6 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:name, :body, :status, :project_id, tag_ids: []).merge(creator: session[:user_id])
+    params.require(:ticket).permit(:name, :body, :status, :project_id, :assignee, tag_ids: []).merge(creator: session[:user_id])
   end
 end
