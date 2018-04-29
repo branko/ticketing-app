@@ -10,6 +10,7 @@
       <tr>
         <th>Name</th>
         <th>Tickets</th>
+        <th>Number of tickets</th>
         <% if logged_in? %>
           <th colspan="2"></th>
         <% end %>
@@ -22,6 +23,7 @@
           <td>
             <%= tag.tickets.map { |ticket| link_to ticket.id, ticket_path(ticket.id) }.join(', ').html_safe %>
           </td>
+          <td><%= link_to tag.tickets.length, tickets_path + "?tag=#{tag.id}" %></td>
           <% if logged_in? %>
             <td>
               <%= link_to "Edit", edit_tag_path(tag) %>

@@ -4,7 +4,9 @@ class TicketsController < ApplicationController
   def index
     @project = params[:project]
     @status = params[:status]
-    @tickets = filter_tickets(@project, @status)  
+    @tickets = filter_tickets(@project, @status) 
+
+    filter_by_tag if params[:tag]
   end
 
   def show
@@ -64,6 +66,11 @@ class TicketsController < ApplicationController
     tickets = tickets.where({ project_id: project.to_i }) if project && !project.empty?
     tickets = tickets.where({ status: status }) if status && !status.empty?
     tickets
+  end
+
+  def filter_by_tag
+    ticket_tags = TicketTag.where(tag_id: params[:tag]).map { |tt| tt.ticket_id}
+    @tickets = @tickets.select { |ticket| ticket_tags.include? ticket.id}
   end
 
   def ticket_params
