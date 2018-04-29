@@ -4,5 +4,11 @@
   <%= f.label :body %>
   <%= f.text_field :body %>
 
+  
+  <%= label_tag :status %>
+  <%= select_tag :status, options_for_select(
+  ['new', 'blocked', 'in_progress', 'fixed'], selected: ticket.status) %>
+
+
   <%= f.submit comment.new_record? ? "Create" : "Edit" %>
 <% end %>

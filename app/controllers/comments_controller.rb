@@ -13,6 +13,13 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:notice] = "Comment created!"
+
+      if @ticket.update(status: params[:status])
+        flash[:notice] += "\nStatus changed to #{params[:status]}"
+      else
+        flash[:notice] += "\nStatus could not be changed"
+      end
+
       redirect_to ticket_path(@ticket)
     else
       flash[:error] = "Comment could not be created"

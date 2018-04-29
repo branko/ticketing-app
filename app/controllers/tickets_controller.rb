@@ -2,9 +2,9 @@ class TicketsController < ApplicationController
   before_action :require_user, except: [:index, :show]
 
   def index
-    project = params[:project]
-    status = params[:status]
-    @tickets = filter_tickets(project, status)  
+    @project = params[:project]
+    @status = params[:status]
+    @tickets = filter_tickets(@project, @status)  
   end
 
   def show
