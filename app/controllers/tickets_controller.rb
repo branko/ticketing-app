@@ -7,6 +7,9 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.all.where ticket_id: @ticket.id
+    @users = User.all
   end
 
   def new
@@ -14,7 +17,6 @@ class TicketsController < ApplicationController
     @projects = Project.all
     @tags = Tag.all
     @users = User.all
-
   end
 
   def create

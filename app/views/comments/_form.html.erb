@@ -1,0 +1,8 @@
+<h3><%= comment.new_record? ? "Create" : "Edit" %> comment: </h3>
+
+<%= form_for [ticket, comment] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+
+  <%= f.submit comment.new_record? ? "Create" : "Edit" %>
+<% end %>

@@ -1,0 +1,14 @@
+<h3>Comments:</h3>
+
+<% comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+    <br>
+    <small>Posted by: </small>
+    <em><%= @users.find_by(id: comment.creator).name %></em>
+    <% if current_user == comment.creator %>
+      <%= link_to 'Edit', edit_ticket_comment_path(comment.ticket, comment) %>
+      <%= link_to 'Delete', ticket_comment_path(comment.ticket, comment), method: 'delete' %>
+    <% end %>
+  </p>
+<% end %>

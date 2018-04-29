@@ -1,4 +1,9 @@
 <%= render 'projects/tickets', tickets: [@ticket] %>
 
+<% if logged_in? %>
+  <%= render 'comments/comments', comments: @comments %>
+  <%= render 'comments/form', ticket: @ticket, comment: @comment %>
+<% end %>
+
 <%= link_to 'Back to project', project_path(@ticket.project_id) %>
 <%= link_to 'Home', root_path %>

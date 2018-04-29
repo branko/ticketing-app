@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :projects
-  resources :tickets
+
+  resources :tickets do
+    resources :comments, except: [:new, :show]
+  end
+
   resources :tags
   resources :users, only: [:new, :create]
 end
