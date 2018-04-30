@@ -17,6 +17,11 @@ class TicketsController < ApplicationController
   end
 
   def new
+    unless Project.any?
+      flash[:notice] = "Must create project before creating a ticket"
+      redirect_to root_path
+    end
+
     @ticket = Ticket.new
     @projects = Project.all
     @tags = Tag.all

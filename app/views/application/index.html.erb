@@ -14,7 +14,7 @@
   <br>
   <%= link_to "Create Project", new_project_path %>
   <br>
-  <%= link_to "Create Ticket", new_ticket_path %>
+  <%= link_to "Create Ticket", new_ticket_path if Project.any? %>
   <br>
   <%= link_to "Log out", logout_path %>
 <% else %>
